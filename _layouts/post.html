@@ -59,6 +59,7 @@ layout: default
                 post-container">
 
 				{{ content }}
+
                 <hr style="visibility: hidden;">
 
                 <ul class="pager">
@@ -145,9 +146,11 @@ layout: default
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
         				{% for tag in site.tags %}
-                			<a href="/tags/#{{ tag[0] }}" title="{{ tag[0] }}" rel="{{ tag[1].size }}">
-                                {{ tag[0] }}
-                            </a>
+                            {% if tag[1].size > {{site.featured-condition-size}} %}
+                				<a href="/tags/#{{ tag[0] }}" title="{{ tag[0] }}" rel="{{ tag[1].size }}">
+                                    {{ tag[0] }}
+                                </a>
+                            {% endif %}
         				{% endfor %}
         			</div>
                 </section>
